@@ -19,35 +19,6 @@ function Import() {
     auth: TOKEN,
   })
 
-  // async function userInfo() {
-  //   const { data } = await octokit.request('/user')
-  //   console.log(data.login)
-  //   SETUSERNAME(data.login)
-  //   return data.login
-  // }
-  // userInfo()
-
-  // async function handleButtonClick() {
-  // console.log(localStorage.getItem('ACCESS TOKEN'))
-
-  // setOpened(true)
-  //   await octokit.repos
-  //     .listForUser({
-  //       username: 'abhinav-anshul',
-  //     })
-
-  //     .then((details) => {
-  //       let x = 0
-  //       let arr = []
-  //       while (x < details.data.length) {
-  //         arr.push(details.data[x].name)
-  //         x++
-  //       }
-
-  //       setList([...arr])
-  //     })
-  // }
-
   const [publicRepos, setPublicRepos] = useState(0)
   async function userInfo() {
     const { data } = await octokit.request('/user')
