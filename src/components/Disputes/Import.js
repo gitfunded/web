@@ -15,8 +15,6 @@ function Import() {
 
   const TOKEN = localStorage.getItem('ACCESS TOKEN')
 
-  let USERNAMETEST = localStorage.getItem('USERNAME')
-
   const octokit = new Octokit({
     auth: TOKEN,
   })
@@ -29,26 +27,57 @@ function Import() {
   // }
   // userInfo()
 
-  async function handleButtonClick() {
+  // async function handleButtonClick() {
+  // console.log(localStorage.getItem('ACCESS TOKEN'))
+
+  // setOpened(true)
+  //   await octokit.repos
+  //     .listForUser({
+  //       username: 'abhinav-anshul',
+  //     })
+
+  //     .then((details) => {
+  //       let x = 0
+  //       let arr = []
+  //       while (x < details.data.length) {
+  //         arr.push(details.data[x].name)
+  //         x++
+  //       }
+
+  //       setList([...arr])
+  //     })
+  // }
+
+  const [publicRepos, setPublicRepos] = useState(0)
+  async function userInfo() {
+    const { data } = await octokit.request('/user')
+    console.log('userinfo', data)
+    let num = data.public_repos
+    setPublicRepos(num - 1)
+    return data
+  }
+  async function listUserRepos() {
     console.log(localStorage.getItem('ACCESS TOKEN'))
-
     setOpened(true)
-    await octokit.repos
-      .listForUser({
-        // username: 'abhinav-anshul',
-        username: USERNAMETEST,
-      })
 
-      .then((details) => {
-        let x = 0
-        let arr = []
-        while (x < details.data.length) {
-          arr.push(details.data[x].name)
-          x++
-        }
-
-        setList([...arr])
+    let repoList = []
+    const user = await userInfo()
+    for (let page = 1; page <= Math.ceil(user.public_repos / 100); page++) {
+      const { data } = await octokit.repos.listForAuthenticatedUser({
+        page: page,
       })
+      console.log('data', data)
+      let x = 0
+      let arr = []
+      while (x < data.length) {
+        arr.push(data[x].name)
+        x++
+      }
+      console.log('arr', arr)
+      setList([...arr])
+    }
+
+    return repoList
   }
 
   function handleClose() {
@@ -66,14 +95,10 @@ function Import() {
   return (
     <>
       {wallet.account !== null ? (
-        <Button mode='strong' onClick={handleButtonClick}>
+        <Button mode='strong' onClick={listUserRepos}>
           Import Project
         </Button>
       ) : null}
-      {/* 
-      <Button mode='strong' onClick={handleButtonClick}>
-        Import Project
-      </Button> */}
 
       <SidePanel onClose={handleClose} title='Repository' opened={opened}>
         <br />
