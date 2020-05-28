@@ -74,32 +74,20 @@ function Import() {
       ) : null}
 
       <SidePanel onClose={handleClose} title='Repository' opened={opened}>
-        <br />
-        <br />
-        <br />
-
         <DropDown
           selected={selected}
           onChange={handleOnChange}
           items={[...list]}
+          style={{ marginTop: '4rem' }}
         />
-        <br />
 
-        <div
-          css={`
-            padding: ${1 * GU}px;
-          `}
-        >
-          <TextInput placeholder='Provide a Name' />
-        </div>
+        <TextInput style={{ marginTop: '2rem' }} placeholder='Provide a Name' />
 
-        <br />
-        <TextInput placeholder='Budget' />
-        <br />
-        <br />
-        <br />
-        <br />
-        <Button mode='positive'>Import Project</Button>
+        <TextInput style={{ marginTop: '2rem' }} placeholder='Budget' />
+
+        <Button style={{ marginTop: '4rem' }} mode='positive'>
+          Import Project
+        </Button>
       </SidePanel>
     </>
   )
