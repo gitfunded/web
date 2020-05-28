@@ -1,7 +1,7 @@
 /* eslint-disable prettier/prettier */
 
 import React from 'react'
-import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom'
+import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import { Main } from '@aragon/ui'
 
 import theme from './theme-court'
@@ -25,13 +25,12 @@ function App() {
         <ActivityProvider>
         <Main layout={false} theme={theme}>
           <MainView>
-            <Redirect from='/' to='/dashboard' />
+            {/* <Redirect from='/' to='/dashboard' /> */}
             <Switch>
               <Route exact path='/profile' component={Dashboard} />
               <Route exact path='/leaderboard' component={Tasks} />
               <Route exact path='/dashboard' component={Disputes} />
               <Route exact path='/sample' component={Sample} />
-
               <Route component={ErrorPage} />
             </Switch>
           </MainView>

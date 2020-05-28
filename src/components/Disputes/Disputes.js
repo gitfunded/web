@@ -8,6 +8,8 @@ import DisputeList from './DisputeList'
 
 import { disputes } from '../../mock-data'
 
+import Import from './Import'
+
 function Disputes() {
   const [selectedDispute, selectDispute] = useSelectedDispute(disputes)
 
@@ -18,6 +20,9 @@ function Disputes() {
   return (
     <React.Fragment>
       <Header primary='Dashboard' />
+      <Import />
+      <br />
+      <br />
       {selectedDispute ? (
         <DisputeDetail dispute={selectedDispute} onBack={handleBack} />
       ) : (
