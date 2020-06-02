@@ -22,6 +22,14 @@ const ACTIVITY_TYPES = new Map(
     `,
       }
     },
+    newProject({ name, budget }) {
+      return {
+        icon: execute,
+        title: 'Added Project',
+        description: ` Created Project ${name} , ${budget} 
+    `,
+      }
+    },
     transaction({ transactionHash }) {
       return {
         title: 'Transaction',

@@ -1,16 +1,11 @@
 /* eslint-disable  */
-import React, { useState, useEffect } from 'react'
-import {
-  SidePanel,
-  Button,
-  DropDown,
-  TextInput,
-  textStyle,
-  Main,
-  GU,
-} from '@aragon/ui'
+import React, { useState, useRef } from 'react'
+import { SidePanel, Button, DropDown, TextInput } from '@aragon/ui'
 import { Octokit } from '@octokit/rest'
 import { useWallet } from 'use-wallet'
+import { useProjectCreationActions } from '../../hooks/useProjectCreation'
+
+// import { useProjectCreationActions } from './useProjectCreation'
 
 function Import() {
   const wallet = useWallet()
@@ -20,6 +15,8 @@ function Import() {
   const [opened, setOpened] = useState(false)
 
   const [list, setList] = useState([])
+
+  const { create } = useProjectCreationActions()
 
   const TOKEN = localStorage.getItem('ACCESS TOKEN')
 
@@ -65,6 +62,16 @@ function Import() {
     setSelected(index)
   }
 
+  const inputBudget = useRef(null)
+  const inputName = useRef(null)
+
+  async function handleProjectCreationn() {
+    let nameInput = inputName.current.value
+    let budgetInput = inputBudget.current.value
+    console.log(nameInput, budgetInput)
+    await create('123', nameInput, budgetInput)
+  }
+
   return (
     <>
       {wallet.account !== null ? (
@@ -81,11 +88,23 @@ function Import() {
           style={{ marginTop: '4rem' }}
         />
 
-        <TextInput style={{ marginTop: '2rem' }} placeholder='Provide a Name' />
+        <TextInput
+          ref={inputName}
+          style={{ marginTop: '2rem' }}
+          placeholder='Provide a Name'
+        />
 
-        <TextInput style={{ marginTop: '2rem' }} placeholder='Budget' />
+        <TextInput
+          ref={inputBudget}
+          style={{ marginTop: '2rem' }}
+          placeholder='Budget'
+        />
 
-        <Button style={{ marginTop: '4rem' }} mode='positive'>
+        <Button
+          onClick={handleProjectCreationn}
+          style={{ marginTop: '4rem' }}
+          mode='positive'
+        >
           Import Project
         </Button>
       </SidePanel>
