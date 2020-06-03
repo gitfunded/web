@@ -6,7 +6,7 @@ import { useActivity } from '../components/Activity/ActivityProvider'
 
 import ProjectCreation from '../contracts/GitFundedGrantFactory.json'
 
-const GAS_LIMIT = 1200000
+const GAS_LIMIT = 3000000
 
 // Project creation contract
 function useProjectCreationContract() {
@@ -23,9 +23,7 @@ export function useProjectCreationActions() {
   const create = useCallback(
     (id, name, budget) => {
       return addActivity(
-        projectCreationContract.newProject(id, name, budget, {
-          gasLimit: GAS_LIMIT,
-        }),
+        projectCreationContract.newProject(id, name, budget),
         'newProject',
         { name: name, budget: budget }
       )
