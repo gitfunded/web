@@ -5,8 +5,6 @@ import { Octokit } from '@octokit/rest'
 import { useWallet } from 'use-wallet'
 import { useProjectCreationActions } from '../../hooks/useProjectCreation'
 
-// import { useProjectCreationActions } from './useProjectCreation'
-
 function Import() {
   const wallet = useWallet()
 
@@ -45,7 +43,7 @@ function Import() {
       })
       let repoIndex = 0
       while (repoIndex < data.length) {
-        repoList.push(data[repoIndex].name)
+        repoList.push({name: data[repoIndex].name, id: data[repoIndex].id})
         repoIndex++
       }
       setList([...repoList])
@@ -66,13 +64,13 @@ function Import() {
 
   const inputBudget = useRef(null)
   const inputName = useRef(null)
+  const inputDropdown = useRef(null)
 
   async function handleProjectCreationn() {
     let nameInput = inputName.current.value
     let budgetInput = inputBudget.current.value
-    let dropdownInput = inputDropdown.current.value
-    console.log(nameInput, budgetInput)
-    await create(dropdownInput, nameInput, budgetInput)
+    let dropdownInput = list[selected].id
+    await create(dropdownInput.toString(), nameInput, budgetInput)
   }
 
   return (
@@ -100,7 +98,7 @@ function Import() {
             <DropDown
               selected={selected}
               onChange={handleOnChange}
-              items={[...list]}
+              items={[...list.map(i=>i.name)]}
               ref={inputDropdown}
               style={{
                 marginTop: '4rem',
