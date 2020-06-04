@@ -36,6 +36,8 @@ function APIcall() {
 
   const onFailure = (response) => console.error(response)
 
+  const TokenContext = React.createContext(localStorage.getItem('ACCESS TOKEN'))
+
   return (
     <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
       <Button mode='normal'>

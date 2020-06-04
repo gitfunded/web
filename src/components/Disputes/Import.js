@@ -1,6 +1,6 @@
 /* eslint-disable  */
 import React, { useState, useRef } from 'react'
-import { SidePanel, Button, DropDown, TextInput } from '@aragon/ui'
+import { SidePanel, Button, DropDown, TextInput, LoadingRing } from '@aragon/ui'
 import { Octokit } from '@octokit/rest'
 import { useWallet } from 'use-wallet'
 import { useProjectCreationActions } from '../../hooks/useProjectCreation'
@@ -15,6 +15,8 @@ function Import() {
   const [opened, setOpened] = useState(false)
 
   const [list, setList] = useState([])
+
+  // const [loading, setLoading] = useState(false)
 
   const { create } = useProjectCreationActions()
 
@@ -31,9 +33,9 @@ function Import() {
     setPublicRepos(num - 1)
     return data
   }
+
   async function listUserRepos() {
     setOpened(true)
-
     let repoList = []
     const user = await userInfo()
     for (let page = 1; page <= Math.ceil(user.public_repos / 100); page++) {
@@ -68,45 +70,62 @@ function Import() {
   async function handleProjectCreationn() {
     let nameInput = inputName.current.value
     let budgetInput = inputBudget.current.value
+    let dropdownInput = inputDropdown.current.value
     console.log(nameInput, budgetInput)
-    await create('123', nameInput, budgetInput)
+    await create(dropdownInput, nameInput, budgetInput)
   }
 
   return (
     <>
-      {wallet.account !== null ? (
+      {wallet.account !== null &&
+      localStorage.getItem('ACCESS TOKEN') !== null ? (
         <Button mode='strong' onClick={listUserRepos}>
           Import Project
         </Button>
       ) : null}
 
       <SidePanel onClose={handleClose} title='Repository' opened={opened}>
-        <DropDown
-          selected={selected}
-          onChange={handleOnChange}
-          items={[...list]}
-          style={{ marginTop: '4rem' }}
-        />
-
-        <TextInput
-          ref={inputName}
-          style={{ marginTop: '2rem' }}
-          placeholder='Provide a Name'
-        />
-
-        <TextInput
-          ref={inputBudget}
-          style={{ marginTop: '2rem' }}
-          placeholder='Budget'
-        />
-
-        <Button
-          onClick={handleProjectCreationn}
-          style={{ marginTop: '4rem' }}
-          mode='positive'
-        >
-          Import Project
-        </Button>
+        {list.length === 0 ? (
+          <div
+            style={{
+              display: 'flex',
+              justifyContent: 'center',
+              marginTop: '4rem',
+            }}
+          >
+            <LoadingRing mode='half-circle' />
+          </div>
+        ) : (
+          <>
+            <DropDown
+              selected={selected}
+              onChange={handleOnChange}
+              items={[...list]}
+              ref={inputDropdown}
+              style={{
+                marginTop: '4rem',
+              }}
+            />
+            {console.log(selected)}
+            <TextInput
+              ref={inputName}
+              style={{ marginTop: '2rem' }}
+              placeholder='Provide a Name'
+            />
+            <TextInput
+              ref={inputBudget}
+              style={{ marginTop: '2rem' }}
+              placeholder='Budget'
+            />
+            <Button
+              onClick={handleProjectCreationn}
+              style={{ marginTop: '4rem' }}
+              mode='positive'
+            >
+              Import Project
+            </Button>
+          </>
+        )}
       </SidePanel>
     </>
   )

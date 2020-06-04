@@ -27,7 +27,7 @@ export function useProjectCreationActions() {
           gasLimit: GAS_LIMIT,
         }),
         'newProject',
-        { name: name, budget: budget }
+        { id: id, name: name, budget: budget }
       )
     },
     [addActivity, projectCreationContract]
