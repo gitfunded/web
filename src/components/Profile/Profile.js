@@ -4,7 +4,7 @@ import { Header, Split } from '@aragon/ui'
 import ProfileHeader from './ProfileHeader'
 import DashboardStats from './DashboardStats'
 
-function Dashboard() {
+function Profile() {
   return (
     <React.Fragment>
       <Header primary='Profile' />
@@ -14,4 +14,4 @@ function Dashboard() {
   )
 }
 
-export default Dashboard
+export default Profile

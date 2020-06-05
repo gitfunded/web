@@ -9,12 +9,12 @@ import theme from './theme-court'
 import MainView from './components/MainView'
 import ErrorPage from './ErrorPage'
 
-import Dashboard from './components/Profile/Dashboard'
+import Profile from './components/Profile/Profile'
 /* eslint-disable prettier/prettier */
 
 import Tasks from './components/Tasks/Tasks'
 import Sample from './components/Sample/Sample'
-import Disputes from './components/Dashboard/Disputes'
+import Disputes from './components/Dashboard/Dashboard'
 import { WalletProvider } from './providers/Wallet'
 import { ActivityProvider } from './components/Activity/ActivityProvider'
 
@@ -27,7 +27,7 @@ function App() {
             <MainView>
               {/* <Redirect from='/' to='/dashboard' /> */}
               <Switch>
-                <Route exact path='/profile' component={Dashboard} />
+                <Route exact path='/profile' component={Profile} />
                 <Route exact path='/leaderboard' component={Tasks} />
                 <Route exact path='/dashboard' component={Disputes} />
                 <Route exact path='/sample' component={Sample} />

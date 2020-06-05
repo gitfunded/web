@@ -10,7 +10,7 @@ import { disputes } from '../../mock-data'
 
 import Import from './Import'
 
-function Disputes() {
+function Dashboard() {
   const [selectedDispute, selectDispute] = useSelectedDispute(disputes)
 
   const handleBack = useCallback(() => {
@@ -55,4 +55,4 @@ const useSelectedDispute = (disputes) => {
   return [selectedDispute, selectDispute]
 }
 
-export default Disputes
+export default Dashboard
