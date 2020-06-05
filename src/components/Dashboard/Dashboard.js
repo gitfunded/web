@@ -1,5 +1,4 @@
 /* eslint-disable prettier/prettier */
-
 import React, { useCallback, useMemo, useState } from 'react'
 import { Header } from '@aragon/ui'
 
@@ -26,17 +25,7 @@ function Dashboard() {
       {selectedDispute ? (
         <DisputeDetail dispute={selectedDispute} onBack={handleBack} />
       ) : (
-        <DisputeList
-          disputes={disputes}
-          selectDispute={selectDispute}
-          // filteredDisputes={filteredDisputes}
-          // disputeStatusFilter={disputeStatusFilter}
-          // handleDisputeStatusFilterChange={handleDisputeStatusFilterChange}
-          // disputeAppFilter={disputeAppFilter}
-          // handleDisputeAppFilterChange={handleDisputeAppFilterChange}
-          // handleClearFilters={handleClearFilters}
-          // executionTargets={executionTargets}
-        />
+        <DisputeList disputes={disputes} selectDispute={selectDispute} />
       )}
     </React.Fragment>
   )

@@ -17,6 +17,7 @@ import Sample from './components/Sample/Sample'
 import Disputes from './components/Dashboard/Dashboard'
 import { WalletProvider } from './providers/Wallet'
 import { ActivityProvider } from './components/Activity/ActivityProvider'
+// import { TokenContext } from './components/Profile/APIcall'
 
 function App() {
   return (

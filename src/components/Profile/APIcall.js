@@ -17,11 +17,6 @@ function APIcall() {
       .then((response) => response.json())
       .then(({ token }) => localStorage.setItem('ACCESS TOKEN', token))
 
-    // if (boolButtonText === 'CONNECT') {
-    //   setBoolButtonText('DISCONNECT')
-    // } else {
-    //   setBoolButtonText('CONNECT')
-    // }
     setBoolButtonText('DISCONNECT')
   }
 
@@ -36,34 +31,43 @@ function APIcall() {
 
   const onFailure = (response) => console.error(response)
 
-  const TokenContext = React.createContext(localStorage.getItem('ACCESS TOKEN'))
+  const TokenContext = React.createContext()
+
+  let TokenSave = localStorage.getItem('ACCESS TOKEN')
 
   return (
-    <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
-      <Button mode='normal'>
-        {localStorage.getItem('ACCESS TOKEN') ? (
-          <GitHubLogin
-            clientId='69bc88033c4b1bc2b4dc'
-            redirectUri='http://localhost:3000/'
-            onSuccess={onSuccess_disconnect}
-            onFailure={onFailure_disconnect}
-            buttonText={boolButtonText_disconnect}
-            // buttonText='DISCONNECT'
-            className='buttonCustomStyle'
-          />
-        ) : (
-          <GitHubLogin
-            clientId='69bc88033c4b1bc2b4dc'
-            redirectUri='http://localhost:3000/'
-            onSuccess={onSuccess}
-            onFailure={onFailure}
-            buttonText={boolButtonText}
-            //buttonText='CONNECT'
-            className='buttonCustomStyle'
-          />
-        )}
-      </Button>
-    </div>
+    (
+      <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
+        <Button mode='normal'>
+          {localStorage.getItem('ACCESS TOKEN') ? (
+            <GitHubLogin
+              clientId='69bc88033c4b1bc2b4dc'
+              redirectUri='http://localhost:3000/'
+              onSuccess={onSuccess_disconnect}
+              onFailure={onFailure_disconnect}
+              buttonText={boolButtonText_disconnect}
+              className='buttonCustomStyle'
+            />
+          ) : (
+            <GitHubLogin
+              clientId='69bc88033c4b1bc2b4dc'
+              redirectUri='http://localhost:3000/'
+              onSuccess={onSuccess}
+              onFailure={onFailure}
+              buttonText={boolButtonText}
+              className='buttonCustomStyle'
+            />
+          )}
+        </Button>
+      </div>
+    ),
+    (
+      <TokenContext.Provider
+        value={{
+          TokenSave,
+        }}
+      ></TokenContext.Provider>
+    )
   )
 }
 
