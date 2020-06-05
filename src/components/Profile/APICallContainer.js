@@ -2,7 +2,7 @@
 import React from 'react'
 import APIcall from './APIcall'
 
-function Test() {
+function APICallContainer() {
   return (
     <div>
       <APIcall />
@@ -10,4 +10,4 @@ function Test() {
   )
 }
 
-export default Test
+export default APICallContainer
