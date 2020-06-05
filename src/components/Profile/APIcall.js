@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react'
 import GitHubLogin from 'react-github-login'
 import { Button } from '@aragon/ui'
-import './test.css'
+import './buttonCustomStyle.css'
 
 function APIcall() {
   const [boolButtonText, setBoolButtonText] = useState('CONNECT')
@@ -49,7 +49,7 @@ function APIcall() {
             onFailure={onFailure_disconnect}
             buttonText={boolButtonText_disconnect}
             // buttonText='DISCONNECT'
-            className='testcss'
+            className='buttonCustomStyle'
           />
         ) : (
           <GitHubLogin
@@ -59,7 +59,7 @@ function APIcall() {
             onFailure={onFailure}
             buttonText={boolButtonText}
             //buttonText='CONNECT'
-            className='testcss'
+            className='buttonCustomStyle'
           />
         )}
       </Button>
