@@ -62,15 +62,6 @@ function APIcall() {
             className='testcss'
           />
         )}
-
-        {/* <GitHubLogin
-          clientId='69bc88033c4b1bc2b4dc'
-          redirectUri='http://localhost:3000/'
-          onSuccess={onSuccess}
-          onFailure={onFailure}
-          buttonText={boolButtonText}
-          className='testcss'
-        /> */}
       </Button>
     </div>
   )
