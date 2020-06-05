@@ -1,6 +1,14 @@
 /* eslint-disable  */
 import React, { useState, useRef } from 'react'
-import { SidePanel, Button, DropDown, TextInput, LoadingRing } from '@aragon/ui'
+import {
+  SidePanel,
+  Button,
+  DropDown,
+  TextInput,
+  LoadingRing,
+  ToastHub,
+  Toast,
+} from '@aragon/ui'
 import { Octokit } from '@octokit/rest'
 import { useWallet } from 'use-wallet'
 import { useProjectCreationActions } from '../../hooks/useProjectCreation'
@@ -80,7 +88,17 @@ function Import() {
         <Button mode='strong' onClick={listUserRepos}>
           Import Project
         </Button>
-      ) : null}
+      ) : (
+        <ToastHub timeout={100}>
+          <Toast>
+            {(toast) => (
+              <Button onClick={() => toast('Please Connect to Github first')}>
+                Import Project
+              </Button>
+            )}
+          </Toast>
+        </ToastHub>
+      )}
 
       <SidePanel onClose={handleClose} title='Repository' opened={opened}>
         {list.length === 0 ? (
