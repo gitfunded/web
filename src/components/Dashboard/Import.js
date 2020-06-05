@@ -43,7 +43,7 @@ function Import() {
       })
       let repoIndex = 0
       while (repoIndex < data.length) {
-        repoList.push({name: data[repoIndex].name, id: data[repoIndex].id})
+        repoList.push({ name: data[repoIndex].name, id: data[repoIndex].id })
         repoIndex++
       }
       setList([...repoList])
@@ -66,7 +66,7 @@ function Import() {
   const inputName = useRef(null)
   const inputDropdown = useRef(null)
 
-  async function handleProjectCreationn() {
+  async function handleProjectCreation() {
     let nameInput = inputName.current.value
     let budgetInput = inputBudget.current.value
     let dropdownInput = list[selected].id
@@ -98,7 +98,7 @@ function Import() {
             <DropDown
               selected={selected}
               onChange={handleOnChange}
-              items={[...list.map(i=>i.name)]}
+              items={[...list.map((i) => i.name)]}
               ref={inputDropdown}
               style={{
                 marginTop: '4rem',
@@ -116,7 +116,7 @@ function Import() {
               placeholder='Budget'
             />
             <Button
-              onClick={handleProjectCreationn}
+              onClick={handleProjectCreation}
               style={{ marginTop: '4rem' }}
               mode='positive'
             >
