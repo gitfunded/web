@@ -12,6 +12,8 @@ import {
 import { Octokit } from '@octokit/rest'
 import { useWallet } from 'use-wallet'
 import { useProjectCreationActions } from '../../hooks/useProjectCreation'
+// import { addproject } from './AddProject'
+import { useProjectAddActions } from './useFetchProject'
 
 function Import() {
   const wallet = useWallet()
@@ -79,6 +81,7 @@ function Import() {
     let budgetInput = inputBudget.current.value
     let dropdownInput = list[selected].id
     await create(dropdownInput.toString(), nameInput, budgetInput)
+    useProjectAddActions()
   }
 
   return (

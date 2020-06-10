@@ -1,5 +1,5 @@
 /* eslint-disable */
-import React, { useEffect, useState, useCallback } from 'react'
+import { useEffect, useState, useCallback } from 'react'
 import { useContract } from '../web3-contracts'
 
 import { useActivity } from '../components/Activity/ActivityProvider'

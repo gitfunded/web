@@ -1,3 +1,4 @@
+/* eslint-disable */
 import iconAnj from './assets/activity-icon-anj.svg'
 import execute from './assets/activity-icon-execute-ruling.svg'
 
@@ -22,6 +23,7 @@ const ACTIVITY_TYPES = new Map(
     `,
       }
     },
+
     newProject({ name, budget }) {
       return {
         icon: execute,
