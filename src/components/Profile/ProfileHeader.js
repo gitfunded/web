@@ -1,6 +1,6 @@
 /* eslint-disable prettier/prettier */
 import React from 'react'
-import Test from './Test'
+import APICallContainer from './APICallContainer'
 import { Box, GU, textStyle, EthIdenticon } from '@aragon/ui'
 import { useWallet } from 'use-wallet'
 
@@ -41,7 +41,7 @@ export default function ProfileHeader({ active }) {
               soften={0}
             />
           </div>
-          <Test />
+          <APICallContainer />
         </div>
       ) : (
         <div style={{ textAlign: 'center' }}>

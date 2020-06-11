@@ -1,3 +1,4 @@
+/* eslint-disable */
 import iconAnj from './assets/activity-icon-anj.svg'
 import execute from './assets/activity-icon-execute-ruling.svg'
 
@@ -19,6 +20,15 @@ const ACTIVITY_TYPES = new Map(
         title: 'Decrement Counter',
         description: `
       Counter decremented by ${amount}
+    `,
+      }
+    },
+
+    newProject({ name, budget }) {
+      return {
+        icon: execute,
+        title: 'Added Project',
+        description: ` Created Project ${name} , ${budget} 
     `,
       }
     },
